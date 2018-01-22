@@ -7,7 +7,7 @@ class Simulator{
         this.simulation = simulation;
         this.logger = logger;
     }
-    public Result run(){
-        return a; // Result type 
-    }
+    /* public Result run(){
+        
+    }*/
 }
