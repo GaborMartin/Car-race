@@ -84,7 +84,7 @@ public class Car {
         Random random = new Random();
 
         while(cars.length < numOfCars){
-            Car car = new Car(brands[random.nextInt(brands.length)],random.nextInt(600)+100,Math.random() < 0.5,random.nextInt(2018)+1970);
+            Car car = new Car(brands[random.nextInt(brands.length)],random.nextInt(600)+100,Math.random() < 0.5, 1970 + (int)(Math.random() * ((2018 - 1970) + 1)));
             car.failurePercent = car.generateFailure();
             car.performance = car.calculatePerformance();
             addToCarArray(car);
