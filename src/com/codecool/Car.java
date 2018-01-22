@@ -10,6 +10,7 @@ public class Car {
     private float failurePercent;
     private int manufacturingDate;
     private float performance;
+    private static Car[] cars;
 
     public Car(String brand, int horsepower, boolean tuning, int manufacturingDate) {
         this.brand = brand;
@@ -81,18 +82,17 @@ public class Car {
     public static Car[] generateRandomCars(int numOfCars){
         String[] brands = {"Nissan","BMW","Honda","Subaru","Lamborghini","Mitsubishi"};
         Random random = new Random();
-        Car[] cars = new Car[0];
 
         while(cars.length < numOfCars){
             Car car = new Car(brands[random.nextInt(brands.length-1)],random.nextInt(600)+100,Math.random() < 0.5,random.nextInt(2018)+1970);
             car.failurePercent = car.generateFailure();
             car.performance = car.calculatePerformance();
-            addToCarArray(car,cars);
+            addToCarArray(car);
         }
         return cars;
     }
 
-    public static void addToCarArray(Car car,Car[] cars) {
+    public static void addToCarArray(Car car) {
         Car[] tempArray = new Car[cars.length + 1];
         for (int i = 0; i < cars.length; i++) {
             tempArray[i] = cars[i];
