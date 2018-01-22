@@ -34,8 +34,8 @@ class Person {
         while (drivers.length < numOfCars) {
             Person driver = new Person(names[random.nextInt(names.length-1)], random.nextInt(10) + 1);
             addToDriverArray(driver, drivers);
-            
         }
+        return drivers;
     }
 
     public void addToDriverArray(Person driver, Person[] driverArray) {
