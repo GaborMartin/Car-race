@@ -8,6 +8,7 @@ class Person {
     private static Person[] drivers = new Person[0];
     private Car car;
     private float outcome;
+    private int gridPlace;
     
 
     public Person(String name,int drivingExeperience) {
@@ -21,7 +22,12 @@ class Person {
     public void setName(String name) {
         this.name = name;
     }
-
+    public int getGridPlace(){
+        return gridPlace;
+    }
+    public void setGridPlace(int gridPlace){
+        this.gridPlace = gridPlace;
+    }
     public int getDrivingExperience() {
         return drivingExeperience;
     }

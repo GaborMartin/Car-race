@@ -102,5 +102,6 @@ public class Car {
         tempArray[tempArray.length - 1] = car;
         cars = tempArray;
     }
-
 }
+
+/// new car method cuccminden
