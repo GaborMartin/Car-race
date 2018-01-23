@@ -7,12 +7,12 @@ class Person {
     private int drivingExeperience;
     private static Person[] drivers = new Person[0];
     private Car car;
+    private float outcome;
     
 
     public Person(String name,int drivingExeperience) {
         this.name = name;
         this.drivingExeperience = drivingExeperience;
-
     }
 
     public String getName() {
@@ -30,26 +30,34 @@ class Person {
         this.drivingExeperience = drivingExeperience;
     }
 
+    public Car getCar(){
+        return car;
+    }
+    
+    public float getOutcome(){
+        return outcome;
+    }
     public static Person[] generateRandomDriver(int numOfCars) {
         String[] names = {"Joe", "Jesus", "Robert", "Matt", "Peter", "Aaron", "Paul", "Astrix", "Tristan", "Ekahal"};
         Random random = new Random();
 
         while (drivers.length < numOfCars) {
             Person driver = new Person(names[random.nextInt(names.length-1)], random.nextInt(10) + 1);
-            driver.car = Car.generateRandomCars(1)[random.nextInt(numOfCars) + 1];
-            addToDriverArray(driver, drivers);
+            driver.car = Car.generateRandomCar();
+            driver.outcome = driver.getCar().getPerformance()+driver.drivingExeperience;
+            addToDriverArray(driver);
         }
         shuffleDriverArray(drivers);
         return drivers;
     }
 
-    public static void addToDriverArray(Person driver, Person[] driverArray) {
-        Person[] tempArray = new Person[driverArray.length + 1];
-        for (int i = 0; i < driverArray.length; i++) {
-            tempArray[i] = driverArray[i];
+    public static void addToDriverArray(Person driver) {
+        Person[] tempArray = new Person[drivers.length + 1];
+        for (int i = 0; i < drivers.length; i++) {
+            tempArray[i] = drivers[i];
         }
         tempArray[tempArray.length - 1] = driver;
-        driverArray = tempArray;
+        drivers = tempArray;
     }
 
     public static void shuffleDriverArray(Person[] drivers) {

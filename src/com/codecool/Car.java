@@ -82,17 +82,13 @@ public class Car {
         }
         return failurePercent;
     }
-    public static Car[] generateRandomCars(int numOfCars){
+    public static Car generateRandomCar(){
         String[] brands = {"Nissan","BMW","Honda","Subaru","Lamborghini","Mitsubishi"};
         Random random = new Random();
-
-        while(cars.length < numOfCars){
-            Car car = new Car(brands[random.nextInt(brands.length)],random.nextInt(600)+100,Math.random() < 0.5, 1970 + (int)(Math.random() * ((2018 - 1970) + 1)));
-            car.failurePercent = car.generateFailure();
-            car.performance = car.calculatePerformance();
-            addToCarArray(car);
-        }
-        return cars;
+        Car car = new Car(brands[random.nextInt(brands.length)],random.nextInt(600)+100,Math.random() < 0.5, 1970 + (int)(Math.random() * ((2018 - 1970) + 1)));
+        car.failurePercent = car.generateFailure();
+        car.performance = car.calculatePerformance();
+        return car;
     }
 
     public static void addToCarArray(Car car) {
