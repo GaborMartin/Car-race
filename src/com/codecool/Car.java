@@ -57,22 +57,22 @@ public class Car {
     }
     public float calculatePerformance(){
         if(horsepower > 0 && horsepower <= 150){
-            performance += 3.5;
-        }
-        else if(horsepower > 150 && horsepower <= 250){
-            performance += 6.5;
-        }
-        else if(horsepower > 250 && horsepower <= 450){
-            performance += 8.5;
-        }
-        else if(horsepower > 450){
-            performance += 10;
-        }
-        if(tuning){
             performance += 5;
         }
-        if(manufacturingDate < 2010){
-            performance -= 3.1;
+        else if(horsepower > 150 && horsepower <= 250){
+            performance += 10;
+        }
+        else if(horsepower > 250 && horsepower <= 450){
+            performance += 15;
+        }
+        else if(horsepower > 450){
+            performance += 20;
+        }
+        if(tuning){
+            performance += 8;
+        }
+        if (manufacturingDate < 2000) {
+            performance -= 8;
         }
         return performance;
     }

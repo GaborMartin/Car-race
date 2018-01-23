@@ -45,7 +45,7 @@ class Person {
         Random random = new Random();
 
         while (drivers.length < numOfCars) {
-            Person driver = new Person(names[random.nextInt(names.length-1)], random.nextInt(10) + 1);
+            Person driver = new Person(names[random.nextInt(names.length-1)], random.nextInt(5) + 1);
             driver.car = Car.generateRandomCar();
             driver.outcome = driver.getCar().getPerformance()+driver.drivingExeperience;
             addToDriverArray(driver);
