@@ -49,6 +49,9 @@ public class Car {
         return manufacturingDate;
     }
 
+    public float getPerformance(){
+        return performance;
+    }
     public float calculatePerformance(){
         if(horsepower > 0 && horsepower <= 150){
             performance += 3.5;
@@ -63,7 +66,7 @@ public class Car {
             performance += 10;
         }
         if(tuning){
-            performance += 15;
+            performance += 5;
         }
         if(manufacturingDate < 2010){
             performance -= 3.1;
