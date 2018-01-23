@@ -103,3 +103,5 @@ public class Car {
         cars = tempArray;
     }
 }
+
+/// new car method cuccminden
