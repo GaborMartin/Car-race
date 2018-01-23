@@ -52,6 +52,9 @@ public class Car {
     public float getPerformance(){
         return performance;
     }
+    public void setPerformance(float performance){
+        this.performance = performance;
+    }
     public float calculatePerformance(){
         if(horsepower > 0 && horsepower <= 150){
             performance += 3.5;

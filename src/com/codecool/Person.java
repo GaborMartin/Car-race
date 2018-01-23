@@ -37,6 +37,9 @@ class Person {
     public float getOutcome(){
         return outcome;
     }
+    public void setOutcome(float outcome){
+        this.outcome = outcome;
+    }
     public static Person[] generateRandomDriver(int numOfCars) {
         String[] names = {"Joe", "Jesus", "Robert", "Matt", "Peter", "Aaron", "Paul", "Astrix", "Tristan", "Ekahal"};
         Random random = new Random();
