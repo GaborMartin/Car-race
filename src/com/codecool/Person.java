@@ -12,6 +12,9 @@ class Person {
     private float defaultOutcome;
     private int wonRounds;
     private int lostRounds;
+    private int secondPlace;
+    private int thirdPlace;
+    private int racePoints;
     
 
     public Person(String name,int drivingExeperience) {
@@ -79,10 +82,13 @@ class Person {
         while (drivers.length < numOfCars) {
             Person driver = new Person(names[nameIndex], random.nextInt(5) + 1);
             driver.car = Car.generateRandomCar();
-            driver.outcome = driver.getCar().getPerformance()+driver.drivingExeperience;
+            driver.outcome = driver.getCar().getPerformance()+driver.drivingExeperience*2;
             driver.defaultOutcome = driver.outcome;
             driver.lostRounds = 0;
             driver.wonRounds = 0;
+            driver.secondPlace = 0;
+            driver.thirdPlace = 0;
+            driver.racePoints = 0;
             addToDriverArray(driver);
             nameIndex ++;
         }
@@ -113,7 +119,27 @@ class Person {
     public void setLostRounds(int rounds) {
         lostRounds = rounds;
     }
+    
+    public void addSecondPlace(){
+        secondPlace +=1;
+    }
 
+    public int getSeconPlace(){
+        return secondPlace;
+    }
+
+    public void addThirdPlace(){
+        thirdPlace += 1;
+    }
+    public int getThirdPlace(){
+        return thirdPlace;
+    }
+    public void addRacePoint(int racePoints){
+        this.racePoints+=racePoints;
+    }
+    public int getRacePoints(){
+        return racePoints;
+    }
     public static void addToDriverArray(Person driver) {
         Person[] tempArray = new Person[drivers.length + 1];
         for (int i = 0; i < drivers.length; i++) {

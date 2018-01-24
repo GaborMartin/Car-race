@@ -7,7 +7,7 @@ public class Car {
     private String brand;
     private int horsepower;
     private boolean tuning;
-    private float failurePercent;
+    private int failurePercent;
     private int manufacturingDate;
     private float performance;
     private static Car[] cars = new Car[0];
@@ -41,7 +41,7 @@ public class Car {
         tuning = true;
     }
 
-    public float getFailurePercent() {
+    public int getFailurePercent() {
         return failurePercent;
     }
 
@@ -56,23 +56,32 @@ public class Car {
         this.performance = performance;
     }
     public float calculatePerformance(){
-        if(horsepower > 0 && horsepower <= 150){
-            performance += 8.5;
+        if(horsepower > 99 && horsepower <= 110){
+            performance += 1;
         }
-        else if(horsepower > 150 && horsepower <= 250){
+        else if(horsepower > 110 && horsepower <= 130){
+            performance += 5;
+        }
+        else if(horsepower > 130 && horsepower <= 150){
+            performance += 7;
+        }
+        else if(horsepower > 150 && horsepower <= 170){
             performance += 10;
         }
-        else if(horsepower > 250 && horsepower <= 450){
-            performance += 12.5;
+        else if(horsepower > 170 && horsepower <= 190){
+            performance += 13;
         }
-        else if(horsepower > 450){
-            performance += 14;
+        else if(horsepower > 190 && horsepower <= 210){
+            performance += 15;
+        }
+        else if(horsepower > 210){
+            performance += 18;
         }
         if(tuning){
             if(manufacturingDate <= 2000){
                 performance += 10;
             }else{
-                performance += 5;
+                performance += 6;
             }
         }
         if (manufacturingDate < 2000) {
@@ -80,7 +89,7 @@ public class Car {
         }
         return performance;
     }
-    public float generateFailure(){
+    public int generateFailure(){
         if(manufacturingDate < 2000){
             failurePercent = 25;
         }
@@ -92,7 +101,7 @@ public class Car {
     public static Car generateRandomCar(){
         String[] brands = {"Nissan","BMW","Honda","Subaru","Lamborghini","Mitsubishi"};
         Random random = new Random();
-        Car car = new Car(brands[random.nextInt(brands.length)],random.nextInt(400)+100,Math.random() < 0.5, 1970 + (int)(Math.random() * ((2018 - 1970) + 1)));
+        Car car = new Car(brands[random.nextInt(brands.length)],random.nextInt(150)+100,Math.random() < 0.5, 1970 + (int)(Math.random() * ((2018 - 1970) + 1)));
         car.failurePercent = car.generateFailure();
         car.performance = car.calculatePerformance();
         return car;

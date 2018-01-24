@@ -1,6 +1,7 @@
 package com.codecool;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Random;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,9 +47,26 @@ class Simulation{
             }
             generateData();
             drivers[drivers.length - 1].addWonRounds();
+            drivers[drivers.length - 2].addSecondPlace();
+            drivers[drivers.length - 3].addThirdPlace();
+
+            drivers[drivers.length - 1].addRacePoint(3);
+            drivers[drivers.length - 2].addRacePoint(2);
+            drivers[drivers.length - 3].addRacePoint(1);
+            
             for (int i = 0; i < drivers.length -1; i++) {
                 if(i != drivers.length -1) {
                     drivers[i].addLostRounds();
+                }
+            }
+            for (int l = 0; l < drivers.length -1;l++){
+                if(x % (Simulation.getSimulationRounds()*0.25f) == 0){
+                    Random rn = new Random();
+                    int chance = rn.nextInt(101);
+                    //System.out.println(chance);
+                    if(chance <= drivers[l].getCar().getFailurePercent()){
+                        drivers[l].setOutcome(0);
+                    }    
                 }
             }
             addToWinnersArray(drivers[drivers.length-1]);
@@ -90,7 +108,7 @@ class Simulation{
 
     public static void addGridplace() {
         for (int i = 0; i < drivers.length; i++) {
-            drivers[i].setOutcome(drivers[i].getOutcome() + (drivers.length - i));
+            drivers[i].setOutcome(drivers[i].getOutcome() + ((drivers.length - i)));
         }
     }
 
@@ -111,6 +129,21 @@ class Simulation{
         tempArray[tempArray.length - 1] = driver;
         result = tempArray;
     }
+
+    /*public static void removeFromDriversArray(int driverID) {
+        Person[] tempArray = new Person[drivers.length - 1];
+        int tempVariable = 0;
+        for (int i = 0; i < drivers.length; i++) {
+            System.out.println(drivers.length);
+            if(i == driverID){
+                tempVariable = 1;
+            }
+            else{
+                tempArray[i-tempVariable] = drivers[i];
+            }
+        }
+        drivers = tempArray;
+    }*/
     public static void handleResult(File file, Person[] drivers) {
         PrintWriter pw = null;
         try {
