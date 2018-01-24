@@ -11,6 +11,8 @@ public class Logger {
             Date date = new Date();
             Timestamp timestamp = new Timestamp(date.getTime());
             System.out.println("[" + timestamp + "]" + " " +message);
+        }else{
+            System.out.println(message);
         }
 
     }
