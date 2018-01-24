@@ -8,7 +8,7 @@ class Main{
     private static final String ANSI_GREEN = "\u001B[32m";
     public static void main(String[] args) {
         //Person[] drivers = Person.generateRandomDriver(10);
-        Simulation sim = new Simulation(50);
+        Simulation sim = new Simulation(10);
         Person[] resultTest = sim.getResult();
         Person[] winners = sim.getWinners();
         for(int i = 0; i < resultTest.length; i++){

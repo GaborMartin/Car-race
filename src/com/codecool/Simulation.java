@@ -1,9 +1,17 @@
 package com.codecool;
-class Simulation{
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.File;
+import java.io.FileOutputStream;
 
+class Simulation{
+    
     private static Person[] drivers = Person.generateRandomDriver(20);
     private int rounds;
     private Person[] winners = new Person[0];
+    private static final String CSVPATH = "../Datas/Result.csv";
+    private final File file = new File(CSVPATH);
+
     public Simulation(int rounds){
         this.rounds = rounds;
 
@@ -26,7 +34,9 @@ class Simulation{
                     }
                 }
             }
-            addToArray(drivers[drivers.length-1]);
+            handleResult(file, drivers);
+            addToWinnersArray(drivers[drivers.length-1]);
+            //handleResult();
         }
         return drivers;
     }
@@ -51,12 +61,31 @@ class Simulation{
         }
     }
 
-    public void addToArray(Person driver) {
+    public void addToWinnersArray(Person driver) {
         Person[] tempArray = new Person[winners.length + 1];
         for (int i = 0; i < winners.length; i++) {
             tempArray[i] = winners[i];
         }
         tempArray[tempArray.length - 1] = driver;
         winners = tempArray;
+    }
+
+    public static void handleResult(File file, Person[] drivers) {
+        PrintWriter pw = null;
+        try {
+            pw = new PrintWriter(new FileOutputStream(new File(CSVPATH), true));
+            for(int i = drivers.length - 1; i > 0; i--) {
+                pw.append((drivers.length - i) + "," + drivers[i].getName() + "," + drivers[i].getCar().getBrand() + "," + drivers[i].getCar().manufacturingDate() + "," + drivers[i].getCar().getHorsepower() + "\n");
+            }
+            pw.append((drivers.length + "," + drivers[0].getName() + "," + drivers[0].getCar().getBrand() + "," + drivers[0].getCar().manufacturingDate() + "," + drivers[0].getCar().getHorsepower()) + "\n");
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (pw != null) {
+                pw.close();
+            }
+        }
     }
 }
