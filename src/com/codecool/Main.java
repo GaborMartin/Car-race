@@ -20,5 +20,7 @@ class Main{
             System.out.println(winners[y].getName()+ ": " + winners[y].getCar().getBrand() + " " + ANSI_GREEN + winners[y].getCar().getHorsepower()+ANSI_RESET);
             
         }
+        System.out.println("----------------------------------------");
+        Simulation.load();
     }
 }

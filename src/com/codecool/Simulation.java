@@ -1,8 +1,11 @@
 package com.codecool;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 
 class Simulation{
     
@@ -11,6 +14,7 @@ class Simulation{
     private Person[] winners = new Person[0];
     private static final String CSVPATH = "../Datas/Result.csv";
     private final File file = new File(CSVPATH);
+    private static String[] result = new String[0];
 
     public Simulation(int rounds){
         this.rounds = rounds;
@@ -34,7 +38,7 @@ class Simulation{
                     }
                 }
             }
-            handleResult(file, drivers);
+            generateData();
             addToWinnersArray(drivers[drivers.length-1]);
             //handleResult();
         }
@@ -46,7 +50,25 @@ class Simulation{
     }
 
     public void generateData(){
-        
+        handleResult(file, drivers);
+    }
+
+    public static void load(){
+        try{
+            BufferedReader in = new BufferedReader(new FileReader(CSVPATH));
+            String line = "";
+            while((line = in.readLine()) != null){
+                addToResultArray(line);
+            }
+            in.close();
+        }
+        catch (Exception ex){
+
+        }
+        for(int i= 0; i < result.length ; i++){
+            System.out.println(result[i]);
+        }
+
     }
 
     public void resetOutcome(){
@@ -70,6 +92,14 @@ class Simulation{
         winners = tempArray;
     }
 
+    public static void addToResultArray(String driver) {
+        String[] tempArray = new String[result.length + 1];
+        for (int i = 0; i < result.length; i++) {
+            tempArray[i] = result[i];
+        }
+        tempArray[tempArray.length - 1] = driver;
+        result = tempArray;
+    }
     public static void handleResult(File file, Person[] drivers) {
         PrintWriter pw = null;
         try {
