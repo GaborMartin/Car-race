@@ -71,6 +71,7 @@ class Simulation{
             }
             addToWinnersArray(drivers[drivers.length-1]);
         }
+        drivers = sortByRacePoints(drivers);
         return drivers;
     }
 
@@ -161,5 +162,19 @@ class Simulation{
                 pw.close();
             }
         }
+    }
+
+    public static Person[] sortByRacePoints(Person[] drivers) {
+        Person temp = null;
+        for (int i = 0; i < drivers.length + 1; i++) {
+                for (int j = 1; j < (drivers.length - i); j++) {
+                    if (drivers[j-1].getRacePoints() > drivers[j].getRacePoints()) {
+                        temp = drivers[j-1];
+                        drivers[j-1] = drivers[j];
+                        drivers[j] = temp;
+                    }
+                }
+        }
+        return drivers;
     }
 }

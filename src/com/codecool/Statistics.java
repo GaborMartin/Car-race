@@ -20,7 +20,8 @@ public class Statistics {
             }
         }
         Logger.log("Simple","Best driver to vote on: ");
-        Logger.log("Simple",ANSI_GREEN+bestDrivers(drivers).getName()+ANSI_RESET+" with "+ANSI_RED+bestDrivers(drivers).getRacePoints()+ANSI_RESET+" points");
+        Person bestDriver = bestDrivers(drivers);
+        Logger.log("Simple",ANSI_GREEN+bestDriver.getName()+ANSI_RESET+" with "+ANSI_RED+bestDriver.getRacePoints()+ANSI_RESET+" points");
     }
    /* public void printBestDrivers(){
         Logger.log("Simple","Best driver(s): ");
