@@ -10,6 +10,8 @@ class Person {
     private float outcome;
     private int gridPlace;
     private float defaultOutcome;
+    private int wonRounds;
+    private int lostRounds;
     
 
     public Person(String name,int drivingExeperience) {
@@ -79,11 +81,37 @@ class Person {
             driver.car = Car.generateRandomCar();
             driver.outcome = driver.getCar().getPerformance()+driver.drivingExeperience;
             driver.defaultOutcome = driver.outcome;
+            driver.lostRounds = 0;
+            driver.wonRounds = 0;
             addToDriverArray(driver);
             nameIndex ++;
         }
         shuffleDriverArray(drivers);
         return drivers;
+    }
+
+    public int getWonRounds() {
+        return wonRounds;
+    }
+
+    public void setWonRounds(int rounds) {
+        wonRounds = rounds;
+    }
+
+    public void addWonRounds() {
+        wonRounds += 1; 
+    }
+
+    public int getLostRounds() {
+        return lostRounds;
+    }
+
+    public void addLostRounds() {
+        lostRounds += 1;
+    }
+
+    public void setLostRounds(int rounds) {
+        lostRounds = rounds;
     }
 
     public static void addToDriverArray(Person driver) {

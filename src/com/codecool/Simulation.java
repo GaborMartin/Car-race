@@ -8,21 +8,27 @@ import java.io.FileReader;
 import java.io.IOException;
 
 class Simulation{
-    
     private static Person[] drivers = Person.generateRandomDriver(20);
     private int rounds;
     private Person[] winners = new Person[0];
     private static final String CSVPATH = "../Datas/Result.csv";
     private final File file = new File(CSVPATH);
     private static String[] result = new String[0];
+    private static int simulationRounds;
 
     public Simulation(int rounds){
         this.rounds = rounds;
+        simulationRounds = rounds;
 
     }
     public int getRounds(){
         return rounds;
     }
+
+    public static int getSimulationRounds() {
+        return simulationRounds;
+    }
+
     public Person[] getResult() {
         for (int x = 0 ; x < getRounds() ; x++){
             resetOutcome();
@@ -39,8 +45,13 @@ class Simulation{
                 }
             }
             generateData();
+            drivers[drivers.length - 1].addWonRounds();
+            for (int i = 0; i < drivers.length -1; i++) {
+                if(i != drivers.length -1) {
+                    drivers[i].addLostRounds();
+                }
+            }
             addToWinnersArray(drivers[drivers.length-1]);
-            //handleResult();
         }
         return drivers;
     }
