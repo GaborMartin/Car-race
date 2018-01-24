@@ -57,22 +57,26 @@ public class Car {
     }
     public float calculatePerformance(){
         if(horsepower > 0 && horsepower <= 150){
-            performance += 5;
-        }
-        else if(horsepower > 150 && horsepower <= 250){
             performance += 10;
         }
+        else if(horsepower > 150 && horsepower <= 250){
+            performance += 13;
+        }
         else if(horsepower > 250 && horsepower <= 450){
-            performance += 15;
+            performance += 16;
         }
         else if(horsepower > 450){
             performance += 20;
         }
         if(tuning){
-            performance += 8;
+            if(manufacturingDate <= 2000){
+                performance += 10;
+            }else{
+                performance += 5;
+            }
         }
         if (manufacturingDate < 2000) {
-            performance -= 8;
+            performance -= 3;
         }
         return performance;
     }
@@ -88,7 +92,7 @@ public class Car {
     public static Car generateRandomCar(){
         String[] brands = {"Nissan","BMW","Honda","Subaru","Lamborghini","Mitsubishi"};
         Random random = new Random();
-        Car car = new Car(brands[random.nextInt(brands.length)],random.nextInt(600)+100,Math.random() < 0.5, 1970 + (int)(Math.random() * ((2018 - 1970) + 1)));
+        Car car = new Car(brands[random.nextInt(brands.length)],random.nextInt(400)+100,Math.random() < 0.5, 1970 + (int)(Math.random() * ((2018 - 1970) + 1)));
         car.failurePercent = car.generateFailure();
         car.performance = car.calculatePerformance();
         return car;
