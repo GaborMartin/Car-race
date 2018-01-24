@@ -17,7 +17,7 @@ class Main{
         }
         System.out.println("----------------------------------------");
         for(int y = 0; y < winners.length; y++){
-            System.out.println(winners[y].getName()+ ": " + winners[y].getCar().getBrand() + " " + winners[y].getCar().getHorsepower() + " " + " " +winners[y].getCar().manufacturingDate()+ " "+ANSI_RED+ winners[y].getCar().getPerformance()+ANSI_RESET+" "+ANSI_GREEN+winners[y].getOutcome()+ANSI_RESET + winners[y].getDrivingExperience());
+            System.out.println(winners[y].getName()+ ": " + winners[y].getCar().getBrand() + " " + ANSI_GREEN + winners[y].getCar().getHorsepower()+ANSI_RESET);
             
         }
     }

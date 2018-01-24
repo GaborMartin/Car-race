@@ -1,8 +1,7 @@
 package com.codecool;
 class Simulation{
 
-    private static Person[] drivers = Person.generateRandomDriver(10);
-    private Person[] defaultDrivers = new Person[drivers.length];
+    private static Person[] drivers = Person.generateRandomDriver(20);
     private int rounds;
     private Person[] winners = new Person[0];
     public Simulation(int rounds){
@@ -14,6 +13,7 @@ class Simulation{
     }
     public Person[] getResult() {
         for (int x = 0 ; x < getRounds() ; x++){
+            resetOutcome();
             addGridplace();
             Person.shuffleDriverArray(drivers);
             Person temp = null;
@@ -37,6 +37,12 @@ class Simulation{
 
     public void generateData(){
         
+    }
+
+    public void resetOutcome(){
+        for(int i = 0; i < drivers.length; i++){
+            drivers[i].setOutcome(drivers[i].getDefaultOutcome());
+        }
     }
 
     public static void addGridplace() {

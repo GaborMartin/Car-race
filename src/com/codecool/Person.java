@@ -9,6 +9,7 @@ class Person {
     private Car car;
     private float outcome;
     private int gridPlace;
+    private float defaultOutcome;
     
 
     public Person(String name,int drivingExeperience) {
@@ -46,15 +47,40 @@ class Person {
     public void setOutcome(float outcome){
         this.outcome = outcome;
     }
+    public float getDefaultOutcome(){
+        return defaultOutcome;
+    }
     public static Person[] generateRandomDriver(int numOfCars) {
-        String[] names = {"Joe", "Jesus", "Robert", "Matt", "Peter", "Aaron", "Paul", "Astrix", "Tristan", "Ekahal"};
+        String[] names = {
+            "Joe",
+            "Jesus",
+            "Robert",
+            "Matt",
+            "Peter",
+            "Aaron",
+            "Paul",
+            "Astrix",
+            "Tristan",
+            "Ekahal",
+            "Eric",
+            "Thomas",
+            "Mia",
+            "Jhonny",
+            "Dick",
+            "Steven",
+            "James",
+            "Matthew",
+            "Jordan",
+            "Chuck"};
         Random random = new Random();
-
+        int nameIndex = 0;
         while (drivers.length < numOfCars) {
-            Person driver = new Person(names[random.nextInt(names.length-1)], random.nextInt(5) + 1);
+            Person driver = new Person(names[nameIndex], random.nextInt(5) + 1);
             driver.car = Car.generateRandomCar();
             driver.outcome = driver.getCar().getPerformance()+driver.drivingExeperience;
+            driver.defaultOutcome = driver.outcome;
             addToDriverArray(driver);
+            nameIndex ++;
         }
         shuffleDriverArray(drivers);
         return drivers;
