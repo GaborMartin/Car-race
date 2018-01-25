@@ -6,6 +6,9 @@ import java.util.Date;
 
 public class Logger {
 
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_GREEN = "\u001B[32m";
     public static void log(String type, String message) {
         if (type == "Timestamp") {
             Date date = new Date();
@@ -13,6 +16,8 @@ public class Logger {
             System.out.println("[" + timestamp + "]" + " " +message);
         }else if (type == "Simple"){
             System.out.println(message);
+        }else if (type == "Error"){
+            System.out.println(ANSI_RED+message+ANSI_RESET);
         }
 
     }
