@@ -10,11 +10,8 @@ class Person {
     private float outcome;
     private int gridPlace;
     private float defaultOutcome;
-    private int wonRounds;
-    private int lostRounds;
-    private int secondPlace;
-    private int thirdPlace;
     private int racePoints;
+    private int[] positions = new int[5];
     
 
     public Person(String name,int drivingExeperience) {
@@ -84,10 +81,11 @@ class Person {
             driver.car = Car.generateRandomCar();
             driver.outcome = driver.getCar().getPerformance()+driver.drivingExeperience*2;
             driver.defaultOutcome = driver.outcome;
-            driver.lostRounds = 0;
-            driver.wonRounds = 0;
-            driver.secondPlace = 0;
-            driver.thirdPlace = 0;
+            driver.positions[0] = 0;
+            driver.positions[1] = 0;
+            driver.positions[2] = 0;
+            driver.positions[3] = 0;
+            driver.positions[4] = 0;
             driver.racePoints = 0;
             addToDriverArray(driver);
             nameIndex ++;
@@ -96,6 +94,16 @@ class Person {
         return drivers;
     }
 
+    public void addPoint(int place, int point) {
+        positions[place] += 1;
+        addRacePoint(point);
+        }
+
+    public int[] getPositions() {
+        return positions;
+    }
+
+    /*
     public int getWonRounds() {
         return wonRounds;
     }
@@ -103,7 +111,7 @@ class Person {
     public void setWonRounds(int rounds) {
         wonRounds = rounds;
     }
-
+    
     public void addWonRounds() {
         wonRounds += 1; 
     }
@@ -119,7 +127,6 @@ class Person {
     public void setLostRounds(int rounds) {
         lostRounds = rounds;
     }
-    
     public void addSecondPlace(){
         secondPlace +=1;
     }
@@ -133,7 +140,7 @@ class Person {
     }
     public int getThirdPlace(){
         return thirdPlace;
-    }
+    } */
     public void addRacePoint(int racePoints){
         this.racePoints+=racePoints;
     }

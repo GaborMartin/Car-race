@@ -46,7 +46,13 @@ class Simulation{
                 }
             }
             generateData();
-            drivers[drivers.length - 1].addWonRounds();
+            drivers[drivers.length - 1].addPoint(0, 5);
+            drivers[drivers.length - 2].addPoint(1, 4);
+            drivers[drivers.length - 3].addPoint(2, 3);
+            drivers[drivers.length - 4].addPoint(3, 2);
+            drivers[drivers.length - 5].addPoint(4, 1);
+
+            /* drivers[drivers.length - 1].addWonRounds();
             drivers[drivers.length - 2].addSecondPlace();
             drivers[drivers.length - 3].addThirdPlace();
 
@@ -56,9 +62,9 @@ class Simulation{
             
             for (int i = 0; i < drivers.length -1; i++) {
                 if(i != drivers.length -1) {
-                    drivers[i].addLostRounds();
+                    drivers[i].addLostRounds(); 
                 }
-            }
+            } */
             for (int l = 0; l < drivers.length -1;l++){
                 if(x % (Simulation.getSimulationRounds()*0.25f) == 0){
                     Random rn = new Random();

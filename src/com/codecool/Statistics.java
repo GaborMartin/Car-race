@@ -7,6 +7,9 @@ public class Statistics {
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_BLUE = "\u001B[34m";
 
     public Statistics(Person[] drivers) {
         this.drivers = drivers;
@@ -14,11 +17,16 @@ public class Statistics {
 
     public void handleStatistics() {
         for (int i = 0; i < drivers.length; i++) {
-            if(drivers[i].getWonRounds() > 0 || drivers[i].getSeconPlace() > 0 || drivers[i].getThirdPlace() > 0){
-                Logger.log("Simple", ANSI_GREEN + drivers[i].getName()+ANSI_RESET + "'s 1st places: " + drivers[i].getWonRounds() + " / " + ANSI_RED + Simulation.getSimulationRounds() + ANSI_RESET + "\n" + /*ANSI_GREEN + drivers[i].getName()+ANSI_RESET + "'s lost rounds: " + drivers[i].getLostRounds() + " / " + ANSI_RED + Simulation.getSimulationRounds() + ANSI_RESET* +"\n"*/ ANSI_GREEN + drivers[i].getName()+ANSI_RESET+ "'s 2nd places: "+drivers[i].getSeconPlace()+" / "+ ANSI_RED + Simulation.getSimulationRounds()+ANSI_RESET+"\n"+ANSI_GREEN+drivers[i].getName()+ANSI_RESET+ "'s 3rd places: "+drivers[i].getThirdPlace()+" / "+ANSI_RED+Simulation.getSimulationRounds()+ANSI_RESET);
-                Logger.log("Simple" ,"--------------------------------------");
+            if (drivers[i].getRacePoints() > 0) {
+                Logger.log("Simple" ,"[" + ANSI_YELLOW + drivers[i].getName() + ANSI_RESET + "]  " + "Exp. point: " + ANSI_YELLOW + drivers[i].getDrivingExperience() + ANSI_RESET);
+                for(int j = 0; j < drivers[i].getPositions().length; j++) {
+                    Logger.log("Simple", (j + 1) + ". places: " + drivers[i].getPositions()[j] + "/" + ANSI_RED + Simulation.getSimulationRounds() + ANSI_RESET);  
+                }
+                Logger.log("Simple", "\nCar: " + "Brand: " + drivers[i].getCar().getBrand() + " (" + drivers[i].getCar().manufacturingDate() + ") Horsepower: " + drivers[i].getCar().getHorsepower() + "\n");
+                
             }
         }
+        Logger.log("Simple", "---------------------------");
         Logger.log("Simple","Best driver to vote on: ");
         Person bestDriver = bestDrivers(drivers);
         Logger.log("Simple",ANSI_GREEN+bestDriver.getName()+ANSI_RESET+" with "+ANSI_RED+bestDriver.getRacePoints()+ANSI_RESET+" points");
@@ -29,12 +37,13 @@ public class Statistics {
             Logger.log("Simple",ANSI_GREEN +drivers[i].getName()+ANSI_RESET);
         }
     }*/
-    public boolean checkWinnner(Person driver){
+     /*public boolean checkWinnner(Person driver){
         if(driver.getWonRounds()>0){
             return true;
         }
         return false;
     }
+    */
     public static Person bestDrivers(Person[] drivers){
         int currentPoints = 0;
         Person bestDriver = null;
@@ -42,22 +51,7 @@ public class Statistics {
             if(drivers[i].getRacePoints()>currentPoints){
                 bestDriver = drivers[i];
             }
-            /*if(drivers[i].getRacePoints() > bestDrivers[0].getRacePoints() && bestDrivers[0].getRacePoints() > 0){
-                bestDrivers[0] = drivers[i];
-                if(bestDrivers[0].getRacePoints() == drivers[i].getRacePoints()){
-                    addBestDriversArray(drivers[i]);
-                }
-            }*/
         }
         return bestDriver;
-    }
-
-    public static void addBestDriversArray(Person driver) {
-        Person[] tempArray = new Person[bestDrivers.length + 1];
-        for (int i = 0; i < bestDrivers.length; i++) {
-            tempArray[i] = bestDrivers[i];
-        }
-        tempArray[tempArray.length - 1] = driver;
-        bestDrivers = tempArray;
     }
 }
