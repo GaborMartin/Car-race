@@ -1,5 +1,10 @@
 package com.codecool;
 class Result{
-    String [] finishingOrder;
-    
+    Person [] finishingOrder;
+    public Result(Person[] finishingOrder){
+        this.finishingOrder = finishingOrder;
+    }
+    public Person[] getFinishingOrder(){
+        return finishingOrder;
+    }
 }

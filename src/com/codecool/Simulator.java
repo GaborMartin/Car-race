@@ -7,7 +7,10 @@ class Simulator{
         this.simulation = simulation;
         this.logger = logger;
     }
-    /* public Result run(){
-        
-    }*/
+    public Result run(){
+        Statistics stat = new Statistics(simulation.getResult());
+        Result res = new Result(simulation.getResult());
+        stat.handleStatistics();
+        return res;
+    }
 }

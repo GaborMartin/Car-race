@@ -103,44 +103,6 @@ class Person {
         return positions;
     }
 
-    /*
-    public int getWonRounds() {
-        return wonRounds;
-    }
-
-    public void setWonRounds(int rounds) {
-        wonRounds = rounds;
-    }
-    
-    public void addWonRounds() {
-        wonRounds += 1; 
-    }
-
-    public int getLostRounds() {
-        return lostRounds;
-    }
-
-    public void addLostRounds() {
-        lostRounds += 1;
-    }
-
-    public void setLostRounds(int rounds) {
-        lostRounds = rounds;
-    }
-    public void addSecondPlace(){
-        secondPlace +=1;
-    }
-
-    public int getSeconPlace(){
-        return secondPlace;
-    }
-
-    public void addThirdPlace(){
-        thirdPlace += 1;
-    }
-    public int getThirdPlace(){
-        return thirdPlace;
-    } */
     public void addRacePoint(int racePoints){
         this.racePoints+=racePoints;
     }
