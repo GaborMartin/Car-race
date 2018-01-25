@@ -9,7 +9,7 @@ class Simulator{
     }
     public Result run(){
         Statistics stat = new Statistics(simulation.getResult());
-        Result res = new Result(simulation.getResult());
+        Result res = new Result(Statistics.getDrivers());
         stat.handleStatistics();
         return res;
     }

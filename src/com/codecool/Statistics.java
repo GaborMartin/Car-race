@@ -1,7 +1,7 @@
 package com.codecool;
 
 public class Statistics {
-    private Person[] drivers;
+    private static Person[] drivers;
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_GREEN = "\u001B[32m";
@@ -27,7 +27,8 @@ public class Statistics {
         Logger.log("Simple", "---------------------------");
         Logger.log("Simple","Best driver to vote on: ");
         Person bestDriver = bestDrivers(drivers);
-        Logger.log("Simple",ANSI_GREEN+bestDriver.getName()+ANSI_RESET+" with "+ANSI_RED+bestDriver.getRacePoints()+ANSI_RESET+" points");
+        float bestDriverPercent = (float)bestDriver.getPositions()[0] / Simulation.getSimulationRounds() * 100;
+        Logger.log("Simple",ANSI_GREEN + bestDriver.getName() + ANSI_RESET + " with " + ANSI_RED + bestDriver.getRacePoints() + ANSI_RESET + " points" + " " + bestDriverPercent);
         Result result = new Result(drivers);
     }
     public static Person bestDrivers(Person[] drivers){
@@ -39,5 +40,9 @@ public class Statistics {
             }
         }
         return bestDriver;
+    }
+
+    public static Person[] getDrivers() {
+        return drivers;
     }
 }
