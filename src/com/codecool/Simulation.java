@@ -71,7 +71,7 @@ class Simulation{
     }
 
     public void generateData(){
-        handleResult(file, drivers);
+        writeResultToFile(file, drivers);
     }
 
     public static void load(){
@@ -117,7 +117,7 @@ class Simulation{
         tempArray[tempArray.length - 1] = driver;
         result = tempArray;
     }
-    public static void handleResult(File file, Person[] drivers) {
+    public static void writeResultToFile(File file, Person[] drivers) {
         PrintWriter pw = null;
         try {
             pw = new PrintWriter(new FileOutputStream(new File(CSVPATH), true));

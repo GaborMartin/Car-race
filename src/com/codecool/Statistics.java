@@ -18,10 +18,10 @@ public class Statistics {
             if (drivers[i].getRacePoints() > 0) {
                 Logger.log("Simple" ,"[" + ANSI_YELLOW + drivers[i].getName() + ANSI_RESET + "]  " + "Exp. point: " + ANSI_YELLOW + drivers[i].getDrivingExperience() + ANSI_RESET);
                 for(int j = 0; j < drivers[i].getPositions().length; j++) {
-                    Logger.log("Simple", (j + 1) + ". places: " + drivers[i].getPositions()[j] + "/" + ANSI_RED + Simulation.getSimulationRounds() + ANSI_RESET);  
+                    Logger.log("Simple", (j + 1) + ". places: " + drivers[i].getPositions()[j] + "/" + ANSI_RED + Simulation.getSimulationRounds()+ANSI_RESET);  
                 }
+                Logger.log("Simple", "Points: " + ANSI_BLUE+drivers[i].getRacePoints()+ANSI_RESET);
                 Logger.log("Simple", "\nCar: " + "Brand: " + drivers[i].getCar().getBrand() + " (" + drivers[i].getCar().manufacturingDate() + ") Horsepower: " + drivers[i].getCar().getHorsepower() + "\n");
-                
             }
         }
         Logger.log("Simple", "---------------------------");
