@@ -8,7 +8,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-class Simulation{
+class Simulation {
     private static Person[] drivers = Person.generateRandomDriver(20);
     private int rounds;
     private Person[] winners = new Person[0];
@@ -17,7 +17,7 @@ class Simulation{
     private static String[] result = new String[0];
     private static int simulationRounds;
 
-    public Simulation(int rounds){
+    public Simulation(int rounds) {
         this.rounds = rounds;
         simulationRounds = rounds;
 
@@ -66,15 +66,15 @@ class Simulation{
         return drivers;
     }
 
-    public Person[] getWinners(){
+    public Person[] getWinners() {
         return winners;
     }
 
-    public void generateData(){
+    public void generateData() {
         writeResultToFile(file, drivers);
     }
 
-    public static void load(){
+    public static void load() {
         try{
             BufferedReader in = new BufferedReader(new FileReader(CSVPATH));
             String line = "";
@@ -83,13 +83,13 @@ class Simulation{
             }
             in.close();
         }
-        catch (Exception ex){
+        catch (Exception ex) {
 
         }
     }
 
-    public void resetOutcome(){
-        for(int i = 0; i < drivers.length; i++){
+    public void resetOutcome() {
+        for(int i = 0; i < drivers.length; i++) {
             drivers[i].setOutcome(drivers[i].getDefaultOutcome());
         }
     }
@@ -122,9 +122,13 @@ class Simulation{
         try {
             pw = new PrintWriter(new FileOutputStream(new File(CSVPATH), true));
             for(int i = drivers.length - 1; i > 0; i--) {
-                pw.append((drivers.length - i) + "," + drivers[i].getName() + "," + drivers[i].getCar().getBrand() + "," + drivers[i].getCar().manufacturingDate() + "," + drivers[i].getCar().getHorsepower() + "\n");
+                pw.append((drivers.length - i) + "," + drivers[i].getName() + ","
+                 + drivers[i].getCar().getBrand() + "," + drivers[i].getCar().manufacturingDate() + ","
+                  + drivers[i].getCar().getHorsepower() + "\n");
             }
-            pw.append((drivers.length + "," + drivers[0].getName() + "," + drivers[0].getCar().getBrand() + "," + drivers[0].getCar().manufacturingDate() + "," + drivers[0].getCar().getHorsepower()) + "\n");
+            pw.append((drivers.length + "," + drivers[0].getName() + "," 
+            + drivers[0].getCar().getBrand() + "," + drivers[0].getCar().manufacturingDate() + ","
+            + drivers[0].getCar().getHorsepower()) + "\n");
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -27,15 +27,17 @@ public class Statistics {
         Logger.log("Simple", "---------------------------");
         Logger.log("Simple","Best driver to vote on: ");
         Person bestDriver = bestDrivers(drivers);
-        float bestDriverPercent = (float)bestDriver.getPositions()[0] / Simulation.getSimulationRounds() * 100;
-        Logger.log("Simple",ANSI_GREEN + bestDriver.getName() + ANSI_RESET + " with " + ANSI_RED + bestDriver.getRacePoints() + ANSI_RESET + " points" + " " + bestDriverPercent);
-        Result result = new Result(drivers);
+        float bestDriverPercent = (float)bestDriver.getPositions()[0] / 
+        Simulation.getSimulationRounds() * 100;
+        Logger.log("Simple",ANSI_GREEN + bestDriver.getName() + ANSI_RESET + " with "
+        + ANSI_RED + bestDriver.getRacePoints() + ANSI_RESET + " points" + " " + bestDriverPercent);
+
     }
-    public static Person bestDrivers(Person[] drivers){
+    public static Person bestDrivers(Person[] drivers) {
         int currentPoints = 0;
         Person bestDriver = null;
         for(int i = 0; i < drivers.length; i++){
-            if(drivers[i].getRacePoints()>currentPoints){
+            if(drivers[i].getRacePoints()>currentPoints) {
                 bestDriver = drivers[i];
             }
         }

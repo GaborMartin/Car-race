@@ -103,10 +103,10 @@ class Person {
         return positions;
     }
 
-    public void addRacePoint(int racePoints){
-        this.racePoints+=racePoints;
+    public void addRacePoint(int racePoints) {
+        this.racePoints += racePoints;
     }
-    public int getRacePoints(){
+    public int getRacePoints() {
         return racePoints;
     }
     public static void addToDriverArray(Person driver) {
